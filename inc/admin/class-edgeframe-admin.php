@@ -95,9 +95,9 @@ class EdgeFrame_Admin {
 		/**
 		 * Allow child themes to enqueue their own assets on the settings screen.
 		 * Example:
-		 *   add_action('edgeframe/admin/enqueue', function($hook){ ... });
+		 *   add_action('edgeframe_admin_enqueue', function($hook){ ... });
 		 */
-		do_action( 'edgeframe/admin/enqueue', $hook );
+		do_action( 'edgeframe_admin_enqueue', $hook );
 	}
 }
 
