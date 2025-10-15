@@ -1,0 +1,14 @@
+/* RTL adjustments for EdgeFrame */
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+.breadcrumb-list {
+	flex-direction: row-reverse;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+	content: '\\005C'; /* backslash visually becomes divider in RTL */
+}
+.search-form {
+	direction: rtl;
+}

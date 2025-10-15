@@ -1,0 +1,26 @@
+/*
+Theme Name: EdgeFrame
+Theme URI: https://example.com/edgeframe
+Author: Muzammil Hussain
+Author URI: https://example.com
+Description: A functional-first WordPress parent theme framework with clean hooks and minimal classes.
+Version: 0.1.0
+Text Domain: edgeframe
+Requires at least: 6.0
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 6.6
+*/
+
+/* Add your custom styles below this line */
+body {
+	font-family: Arial, sans-serif;
+}
+
+/*
+Copyright (c) 2025 Muzammil Hussain
+
+This theme, like WordPress, is licensed under the GPL.
+You may use it to create something beautiful.
+*/

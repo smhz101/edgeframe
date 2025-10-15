@@ -1,0 +1,48 @@
+<?php
+/**
+ * Edgeframe functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Edgeframe
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/** Load constants first */
+require get_template_directory() . '/inc/core/constants.php';
+
+/** Core helpers */
+require EDGEFRAME_PATH . 'inc/core/helpers.php';
+
+/** Setup */
+require EDGEFRAME_PATH . 'inc/setup/theme-support.php';
+require EDGEFRAME_PATH . 'inc/setup/enqueue.php';
+require EDGEFRAME_PATH . 'inc/setup/menus-sidebars.php';
+
+/** Features */
+require EDGEFRAME_PATH . 'inc/features/image-sizes.php';
+require EDGEFRAME_PATH . 'inc/features/template-tags.php';
+require EDGEFRAME_PATH . 'inc/features/pagination.php';
+require EDGEFRAME_PATH . 'inc/features/breadcrumbs.php';
+require EDGEFRAME_PATH . 'inc/features/shortcodes.php';
+require EDGEFRAME_PATH . 'inc/features/security.php';
+require EDGEFRAME_PATH . 'inc/features/performance.php';
+
+/** Compatibility */
+require EDGEFRAME_PATH . 'inc/compatibility/block-editor.php';
+if ( class_exists( 'WooCommerce' ) ) {
+	require EDGEFRAME_PATH . 'inc/compatibility/woocommerce.php';
+}
+
+/** Customizer + Admin (minimal classes) */
+require EDGEFRAME_PATH . 'inc/customizer/class-edgeframe-customizer.php';
+require EDGEFRAME_PATH . 'inc/customizer/customizer-options.php';
+require EDGEFRAME_PATH . 'inc/admin/class-edgeframe-admin.php';
+require EDGEFRAME_PATH . 'inc/admin/settings-register.php';
+require EDGEFRAME_PATH . 'inc/admin/settings-page.php';
+
+/** Finally, wire actions and filters */
+require EDGEFRAME_PATH . 'inc/hooks/actions.php';
+require EDGEFRAME_PATH . 'inc/hooks/filters.php';
