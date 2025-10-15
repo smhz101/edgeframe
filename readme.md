@@ -59,6 +59,8 @@ All new hooks follow snake_case naming for readability. Legacy slash hooks are s
 
 Note: Legacy hooks like `edgeframe/admin/...` are still executed for child theme compatibility.
 
+See also: `docs/hooks-reference.md` for full signatures and code examples.
+
 ## Theme support
 
 -   Title tag, post thumbnails, HTML5 markup, feed links
