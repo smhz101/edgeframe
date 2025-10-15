@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "edgeframe/recent-posts",
+  "title": "EdgeFrame Recent Posts",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Recent posts with thumbnails.",
+  "keywords": ["posts", "recent"],
+  "attributes": {
+    "count": { "type": "number", "default": 5 }
+  },
+  "supports": { "html": false },
+  "style": "edgeframe-main",
+  "editorStyle": "edgeframe-editor",
+  "render": "file:./render.php"
+}

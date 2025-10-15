@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "edgeframe/breadcrumbs",
+  "title": "EdgeFrame Breadcrumbs",
+  "category": "widgets",
+  "icon": "menu",
+  "description": "Outputs the EdgeFrame breadcrumb trail.",
+  "keywords": ["breadcrumbs", "navigation"],
+  "supports": {
+    "html": false
+  },
+  "style": "edgeframe-main",
+  "editorStyle": "edgeframe-editor",
+  "render": "file:./render.php"
+}

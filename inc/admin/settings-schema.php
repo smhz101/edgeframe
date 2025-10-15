@@ -16,6 +16,112 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function edgeframe_get_settings_schema(): array {
 	$schema = array(
+		'header'       => array(
+			'label'    => __( 'Header', 'edgeframe' ),
+			'icon'     => 'dashicons-align-wide',
+			'desc'     => __( 'Configure global header layout and elements.', 'edgeframe' ),
+			'sections' => array(
+				'layout'   => array(
+					'label'  => __( 'Layout', 'edgeframe' ),
+					'fields' => array(
+						'header_layout'      => array(
+							'type'    => 'select',
+							'label'   => __( 'Header Layout', 'edgeframe' ),
+							'attrs'   => array( 'class' => 'ef-select2' ),
+							'options' => apply_filters(
+								'edgeframe_header_layout_options',
+								array(
+									'simple'   => __( 'Simple (brand left, nav right)', 'edgeframe' ),
+									'centered' => __( 'Centered (brand above nav)', 'edgeframe' ),
+									'split'    => __( 'Split (nav left/right, brand center)', 'edgeframe' ),
+									'stacked'  => __( 'Stacked (brand then nav)', 'edgeframe' ),
+								)
+							),
+							'default' => 'simple',
+						),
+						'header_sticky'      => array(
+							'type'    => 'toggle',
+							'label'   => __( 'Sticky Header', 'edgeframe' ),
+							'default' => 0,
+						),
+						'header_transparent' => array(
+							'type'    => 'toggle',
+							'label'   => __( 'Transparent (overlay)', 'edgeframe' ),
+							'default' => 0,
+						),
+						'header_menu_alignment' => array(
+							'type'    => 'select',
+							'label'   => __( 'Menu Alignment', 'edgeframe' ),
+							'attrs'   => array( 'class' => 'ef-select2' ),
+							'options' => array(
+								'left'   => __( 'Left', 'edgeframe' ),
+								'center' => __( 'Center', 'edgeframe' ),
+								'right'  => __( 'Right', 'edgeframe' ),
+							),
+							'default' => 'right',
+						),
+					),
+				),
+				'elements' => array(
+					'label'  => __( 'Elements', 'edgeframe' ),
+					'fields' => array(
+						'header_show_search' => array(
+							'type'    => 'toggle',
+							'label'   => __( 'Show Search', 'edgeframe' ),
+							'default' => 1,
+						),
+						'header_show_cta'    => array(
+							'type'    => 'toggle',
+							'label'   => __( 'Show CTA Button', 'edgeframe' ),
+							'default' => 0,
+						),
+						'header_cta'         => array(
+							'type'    => 'group',
+							'label'   => __( 'CTA Button', 'edgeframe' ),
+							'show_if' => array(
+								array( 'field' => 'header_show_cta', 'truthy' => true ),
+							),
+							'fields'  => array(
+								'text'   => array(
+									'type'    => 'text',
+									'label'   => __( 'Text', 'edgeframe' ),
+									'default' => __( 'Contact Us', 'edgeframe' ),
+								),
+								'url'    => array(
+									'type'    => 'text',
+									'label'   => __( 'URL', 'edgeframe' ),
+									'default' => '',
+								),
+								'new_tab' => array(
+									'type'    => 'toggle',
+									'label'   => __( 'Open in new tab', 'edgeframe' ),
+									'default' => 0,
+								),
+							),
+						),
+					),
+				),
+				'topbar'   => array(
+					'label'  => __( 'Top Bar', 'edgeframe' ),
+					'fields' => array(
+						'header_topbar_enable' => array(
+							'type'    => 'toggle',
+							'label'   => __( 'Enable Top Bar', 'edgeframe' ),
+							'default' => 0,
+						),
+						'header_topbar_text'   => array(
+							'type'    => 'textarea',
+							'label'   => __( 'Top Bar Text', 'edgeframe' ),
+							'tooltip' => __( 'Short text for the top bar (accepts basic HTML).', 'edgeframe' ),
+							'show_if' => array(
+								array( 'field' => 'header_topbar_enable', 'truthy' => true ),
+							),
+							'default' => '',
+						),
+					),
+				),
+			),
+		),
 		'general'      => array(
 			'label'    => __( 'General', 'edgeframe' ),
 			'icon'     => 'dashicons-admin-generic',

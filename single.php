@@ -1,5 +1,6 @@
 <?php get_header(); ?>
-<main id="primary" class="site-main">
+<?php $layout = edgeframe_opt( 'layout', 'content-sidebar' ); ?>
+<main id="primary" class="site-main layout-<?php echo esc_attr( $layout ); ?>">
 	<?php
 	while ( have_posts() ) :
 		the_post();
@@ -12,5 +13,5 @@
 	endwhile; // End of the loop.
 	?>
 </main>
-<?php get_sidebar(); ?>
+<?php if ( 'full-width' !== $layout && 'sidebar-content' !== $layout ) { get_sidebar(); } ?>
 <?php get_footer(); ?>

@@ -7,6 +7,11 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<figure class="post-thumbnail">
+				<?php the_post_thumbnail( 'edgeframe-card', array( 'alt' => the_title_attribute( array( 'echo' => false ) ) ) ); ?>
+			</figure>
+		<?php endif; ?>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 	</header>
 	<div class="entry-content">

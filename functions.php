@@ -29,6 +29,13 @@ require EDGEFRAME_PATH . 'inc/features/breadcrumbs.php';
 require EDGEFRAME_PATH . 'inc/features/shortcodes.php';
 require EDGEFRAME_PATH . 'inc/features/security.php';
 require EDGEFRAME_PATH . 'inc/features/performance.php';
+require EDGEFRAME_PATH . 'inc/features/block-styles.php';
+require EDGEFRAME_PATH . 'inc/features/block-patterns.php';
+require EDGEFRAME_PATH . 'inc/blocks/index.php';
+
+/** Widgets */
+require EDGEFRAME_PATH . 'inc/widgets/class-edgeframe-widget-about.php';
+require EDGEFRAME_PATH . 'inc/widgets/class-edgeframe-widget-recent-posts.php';
 
 /** Compatibility */
 require EDGEFRAME_PATH . 'inc/compatibility/block-editor.php';

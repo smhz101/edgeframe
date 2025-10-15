@@ -7,6 +7,13 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<figure class="post-thumbnail">
+				<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+					<?php the_post_thumbnail( 'edgeframe-card', array( 'alt' => the_title_attribute( array( 'echo' => false ) ) ) ); ?>
+				</a>
+			</figure>
+		<?php endif; ?>
 		<?php if ( is_singular() ) : ?>
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 		<?php else : ?>
@@ -35,6 +42,12 @@
 
 	<footer class="entry-footer">
 		<?php edgeframe_entry_meta(); ?>
+		<?php
+		$tags = get_the_tag_list( '', ', ' );
+		if ( $tags ) {
+			echo '<span class="tag-links">' . wp_kses_post( $tags ) . '</span>';
+		}
+		?>
 	</footer>
 </article>
 

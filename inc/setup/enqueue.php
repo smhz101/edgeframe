@@ -20,6 +20,11 @@ function edgeframe_enqueue_front() {
 	wp_add_inline_style( 'edgeframe-main', ':root{--ef-accent:' . esc_attr( $accent ) . ';}' );
 
 	wp_enqueue_script( 'edgeframe-main', EDGEFRAME_URI . 'assets/js/main.js', array(), EDGEFRAME_VERSION, true );
+
+	// Threaded comments support
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 add_action( 'enqueue_block_editor_assets', 'edgeframe_enqueue_editor' );

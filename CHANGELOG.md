@@ -17,6 +17,13 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 -   Theme supports (title-tag, thumbnails, HTML5, editor-styles), menus and sidebars
 -   Customizer accent color and helpers
 -   Block editor compatibility
+-   JSON-LD BreadcrumbList output alongside HTML breadcrumbs
+-   Block styles (Buttons: Outline; Quote: Bordered; Image: Shadow)
+-   Block pattern categories and starter patterns (Hero, Features grid, CTA)
+-   theme.json with palette, typography, and spacing units
+-   Enqueue comment-reply on singular when threaded comments enabled
+-   Template enhancements: featured images on posts/pages; post tags output
+-   Custom Header and Custom Background theme supports
 
 ### Changed
 

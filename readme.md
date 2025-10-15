@@ -13,7 +13,6 @@ A developer-friendly, ThemeForest-ready WordPress parent theme with a schema-dri
 -   Accessibility: skip link, ARIA-friendly breadcrumbs, semantic markup
 -   Front-end baseline styles and RTL stylesheet
 -   Block editor compatibility
--   Child theme included
 
 ## Requirements
 
@@ -24,15 +23,13 @@ A developer-friendly, ThemeForest-ready WordPress parent theme with a schema-dri
 
 1. Upload the `edgeframe` folder to `/wp-content/themes/`.
 2. Activate the theme under Appearance → Themes.
-3. (Optional) Activate the child theme in `child-theme/edgeframe-child/`.
-4. Visit Appearance → EdgeFrame to configure settings.
+3. Visit Appearance → EdgeFrame to configure settings.
 
 ## File structure
 
 -   `inc/` — Core modules (setup, features, admin UI, compatibility)
 -   `assets/` — CSS/JS and images (front and admin)
 -   `template-parts/` — Content partials
--   `child-theme/edgeframe-child` — Starter child theme
 
 ## Hooks (actions & filters)
 
@@ -73,6 +70,29 @@ See also: `docs/hooks-reference.md` for full signatures and code examples.
 -   New field types include dedicated sanitizers (date, time, color palette).
 -   Repeaters support drag-and-drop and group items.
 -   Select2 can be bundled locally or uses a CDN fallback in admin.
+
+### Shortcodes
+
+-   [year] → outputs current year
+-   [site_title], [site_tagline]
+-   [button text="Learn more" url="https://example.com" style="outline" target="_blank"]
+-   [breadcrumbs] → prints the theme breadcrumb trail
+
+Disable all theme shortcodes with:
+
+```
+add_filter( 'edgeframe_enable_theme_shortcodes', '__return_false' );
+```
+
+### Widgets
+
+-   EdgeFrame: About — image + text blurb
+-   EdgeFrame: Recent Posts — thumbnails + dates
+
+### Blocks
+
+-   EdgeFrame Breadcrumbs — server-rendered
+-   EdgeFrame Recent Posts — server-rendered (count attribute)
 
 ## Roadmap
 
