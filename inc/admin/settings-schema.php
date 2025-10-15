@@ -483,5 +483,11 @@ function edgeframe_get_settings_schema(): array {
 		),
 	);
 
-	return apply_filters( 'edgeframe_settings_schema', $schema );
+	// New snake_case filter
+	$schema = apply_filters( 'edgeframe_settings_schema', $schema );
+	// Back-compat for older slash-named filters
+	if ( has_filter( 'edgeframe/settings_schema' ) ) {
+		$schema = apply_filters( 'edgeframe/settings_schema', $schema );
+	}
+	return $schema;
 }

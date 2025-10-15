@@ -16,13 +16,25 @@ require_once EDGEFRAME_PATH . 'inc/admin/settings-actions.php';
  * Render the settings page
  */
 function edgeframe_render_settings_page() {
-	$schema = apply_filters( 'edgeframe/admin/schema', edgeframe_get_settings_schema() );
+	// New snake_case filter for schema
+	$schema = apply_filters( 'edgeframe_admin_schema', edgeframe_get_settings_schema() );
+	// Back-compat: slash-named filter
+	if ( has_filter( 'edgeframe/admin/schema' ) ) {
+		$schema = apply_filters( 'edgeframe/admin/schema', $schema );
+	}
 	/**
 	 * Allow child themes to modify tabs order or locals.
 	 */
-	$schema = apply_filters( 'edgeframe/admin/schema/after', $schema );
+	$schema = apply_filters( 'edgeframe_admin_schema_after', $schema );
+	if ( has_filter( 'edgeframe/admin/schema/after' ) ) {
+		$schema = apply_filters( 'edgeframe/admin/schema/after', $schema );
+	}
 
-	do_action( 'edgeframe/admin/before_render', $schema );
+	// Before render action
+	do_action( 'edgeframe_admin_before_render', $schema );
+	if ( has_action( 'edgeframe/admin/before_render' ) ) {
+		do_action( 'edgeframe/admin/before_render', $schema );
+	}
 
 	?>
 	<div class="wrap edgeframe-wrap">
@@ -61,7 +73,12 @@ function edgeframe_render_settings_page() {
 				<input type="search" id="ef-search" placeholder="<?php echo esc_attr__( 'Search settings…', 'edgeframe' ); ?>" />
 			</div>
 
-			<?php do_action( 'edgeframe/admin/toolbar' ); ?>
+			<?php
+			do_action( 'edgeframe_admin_toolbar' );
+			if ( has_action( 'edgeframe/admin/toolbar' ) ) {
+				do_action( 'edgeframe/admin/toolbar' );
+			}
+			?>
 		</div>
 
 		<div class="ef-layout">
@@ -78,7 +95,12 @@ function edgeframe_render_settings_page() {
 							?>
 							<a href="#ef-<?php echo esc_attr( $tab_key ); ?>" class="nav-tab" data-tab="<?php echo esc_attr( $tab_key ); ?>"><?php echo wp_kses( $icon_html, array( 'span' => array( 'class' => array() ) ) ); ?><?php echo esc_html( $tab['label'] ?? $tab_key ); ?></a>
 					<?php endforeach; ?>
-					<?php do_action( 'edgeframe/admin/tabs_after', $schema ); ?>
+					<?php
+					do_action( 'edgeframe_admin_tabs_after', $schema );
+					if ( has_action( 'edgeframe/admin/tabs_after' ) ) {
+						do_action( 'edgeframe/admin/tabs_after', $schema );
+					}
+					?>
 				</div>
 			</aside>
 
@@ -118,7 +140,10 @@ function edgeframe_render_settings_page() {
 						<form method="post" action="options.php" class="ef-form" data-tab="<?php echo esc_attr( $tab_key ); ?>">
 							<?php
 							settings_fields( 'edgeframe_group' );
-							do_action( 'edgeframe/admin/before_sections', $tab, $tab_key );
+							do_action( 'edgeframe_admin_before_sections', $tab, $tab_key );
+							if ( has_action( 'edgeframe/admin/before_sections' ) ) {
+								do_action( 'edgeframe/admin/before_sections', $tab, $tab_key );
+							}
 
 							$rendered = false;
 							foreach ( ( $tab['sections'] ?? array() ) as $section_key => $section ) {
@@ -132,13 +157,19 @@ function edgeframe_render_settings_page() {
 									echo '<p class="ef-section-desc">' . wp_kses_post( $section['desc'] ) . '</p>';
 								}
 
-								do_action( 'edgeframe/admin/section/before', $tab_key, $section_key, $section );
+								do_action( 'edgeframe_admin_section_before', $tab_key, $section_key, $section );
+								if ( has_action( 'edgeframe/admin/section/before' ) ) {
+									do_action( 'edgeframe/admin/section/before', $tab_key, $section_key, $section );
+								}
 
 								echo '<table class="ef-form-table form-table" role="presentation"><tbody>';
 								do_settings_fields( 'edgeframe-settings', $section_id );
 								echo '</tbody></table>';
 
-								do_action( 'edgeframe/admin/section/after', $tab_key, $section_key, $section );
+								do_action( 'edgeframe_admin_section_after', $tab_key, $section_key, $section );
+								if ( has_action( 'edgeframe/admin/section/after' ) ) {
+									do_action( 'edgeframe/admin/section/after', $tab_key, $section_key, $section );
+								}
 
 								echo '</section>';
 							}
@@ -147,7 +178,10 @@ function edgeframe_render_settings_page() {
 								echo '<div class="notice notice-info"><p>' . esc_html__( 'No settings in this tab yet.', 'edgeframe' ) . '</p></div>';
 							}
 
-							do_action( 'edgeframe/admin/after_sections', $tab, $tab_key );
+							do_action( 'edgeframe_admin_after_sections', $tab, $tab_key );
+							if ( has_action( 'edgeframe/admin/after_sections' ) ) {
+								do_action( 'edgeframe/admin/after_sections', $tab, $tab_key );
+							}
 							submit_button();
 							?>
 						</form>
@@ -156,7 +190,12 @@ function edgeframe_render_settings_page() {
 			</section>
 		</div>
 
-		<?php do_action( 'edgeframe/admin/after_render', $schema ); ?>
+		<?php
+		do_action( 'edgeframe_admin_after_render', $schema );
+		if ( has_action( 'edgeframe/admin/after_render' ) ) {
+			do_action( 'edgeframe/admin/after_render', $schema );
+		}
+		?>
 	</div>
 	<?php
 }

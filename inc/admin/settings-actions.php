@@ -60,7 +60,10 @@ add_action(
 		/**
 		 * Filter imported settings before saving.
 		 */
-		$clean = apply_filters( 'edgeframe/admin/import_settings', $clean, $arr );
+		$clean = apply_filters( 'edgeframe_admin_import_settings', $clean, $arr );
+		if ( has_filter( 'edgeframe/admin/import_settings' ) ) {
+			$clean = apply_filters( 'edgeframe/admin/import_settings', $clean, $arr );
+		}
 
 		update_option( 'edgeframe_settings', $clean );
 		wp_safe_redirect( add_query_arg( 'ef_status', 'imported', admin_url( 'themes.php?page=edgeframe-settings' ) ) );
@@ -81,7 +84,10 @@ add_action(
 
 		$defaults = edgeframe_defaults_from_schema();
 		update_option( 'edgeframe_settings', $defaults );
-		do_action( 'edgeframe/admin/reset_settings', $defaults );
+		do_action( 'edgeframe_admin_reset_settings', $defaults );
+		if ( has_action( 'edgeframe/admin/reset_settings' ) ) {
+			do_action( 'edgeframe/admin/reset_settings', $defaults );
+		}
 
 		wp_safe_redirect( add_query_arg( 'ef_status', 'reset', admin_url( 'themes.php?page=edgeframe-settings' ) ) );
 		exit;
