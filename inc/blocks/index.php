@@ -25,12 +25,9 @@ add_filter(
 	}
 );
 
-add_action(
-	'init',
-	function () {
-		if ( ! function_exists( 'register_block_type' ) ) {
-			return; }
-		register_block_type( __DIR__ . '/breadcrumbs' );
-		register_block_type( __DIR__ . '/recent-posts' );
-	}
-);
+// Disabled in theme build. Move block registration to a plugin.
+// add_action( 'init', function () {
+// if ( ! function_exists( 'register_block_type' ) ) { return; }
+// register_block_type( __DIR__ . '/breadcrumbs' );
+// register_block_type( __DIR__ . '/recent-posts' );
+// } );

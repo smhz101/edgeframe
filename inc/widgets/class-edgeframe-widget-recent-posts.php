@@ -21,9 +21,38 @@ class EdgeFrame_Widget_Recent_Posts extends WP_Widget {
 		$count = isset( $instance['count'] ) ? absint( $instance['count'] ) : 5;
 		$count = $count > 0 && $count <= 10 ? $count : 5;
 
-		echo $args['before_widget'];
+		// before_widget and after_widget come from theme markup; allow only basic tags/attributes.
+		echo wp_kses(
+			$args['before_widget'],
+			array(
+				'section' => array(
+					'id'    => true,
+					'class' => true,
+				),
+				'div'     => array(
+					'id'    => true,
+					'class' => true,
+				),
+			)
+		);
 		if ( $title ) {
-			echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
+			echo wp_kses(
+				$args['before_title'],
+				array(
+					'h1' => array( 'class' => true ),
+					'h2' => array( 'class' => true ),
+					'h3' => array( 'class' => true ),
+					'h4' => array( 'class' => true ),
+				)
+			) . esc_html( $title ) . wp_kses(
+				$args['after_title'],
+				array(
+					'h1' => array(),
+					'h2' => array(),
+					'h3' => array(),
+					'h4' => array(),
+				)
+			);
 		}
 
 		$q = new WP_Query(
@@ -54,7 +83,13 @@ class EdgeFrame_Widget_Recent_Posts extends WP_Widget {
 			wp_reset_postdata();
 		}
 
-		echo $args['after_widget'];
+		echo wp_kses(
+			$args['after_widget'],
+			array(
+				'section' => array(),
+				'div'     => array(),
+			)
+		);
 	}
 
 	public function form( $instance ) {

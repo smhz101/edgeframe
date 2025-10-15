@@ -10,13 +10,13 @@
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'edgeframe' ); ?></a>
 <?php
 // Resolve header layout and flags from settings.
-$layout      = edgeframe_opt( 'header_layout', 'simple' );
-$sticky      = edgeframe_bool( edgeframe_opt( 'header_sticky', 0 ) );
-$transparent = edgeframe_bool( edgeframe_opt( 'header_transparent', 0 ) );
-$menu_align  = edgeframe_opt( 'header_menu_alignment', 'right' );
-$show_search = edgeframe_bool( edgeframe_opt( 'header_show_search', 1 ) );
-$show_cta    = edgeframe_bool( edgeframe_opt( 'header_show_cta', 0 ) );
-$cta         = (array) edgeframe_opt( 'header_cta', array() );
+$container_mode = function_exists( 'edgeframe_opt' ) ? edgeframe_opt( 'container_mode', 'full' ) : 'full';
+$layout         = edgeframe_opt( 'header_layout', 'simple' );
+$sticky         = edgeframe_bool( edgeframe_opt( 'header_sticky', 0 ) );
+$transparent    = edgeframe_bool( edgeframe_opt( 'header_transparent', 0 ) );
+$menu_align     = edgeframe_opt( 'header_menu_alignment', 'right' );
+$show_cta       = edgeframe_bool( edgeframe_opt( 'header_show_cta', 0 ) );
+$cta            = (array) edgeframe_opt( 'header_cta', array() );
 
 // Allow child themes to override layout programmatically.
 $layout = apply_filters( 'edgeframe_header_layout', $layout );
@@ -105,15 +105,23 @@ add_action(
 // Add computed header classes to body.
 add_filter(
 	'body_class',
-	function ( $classes ) use ( $layout, $sticky, $transparent ) {
+	function ( $classes ) use ( $layout, $sticky, $transparent, $container_mode ) {
 		$classes[] = 'ef-header-layout-' . sanitize_html_class( $layout );
 		if ( $sticky ) {
 			$classes[] = 'ef-header-sticky'; }
 		if ( $transparent ) {
 			$classes[] = 'ef-header-transparent'; }
+		if ( in_array( $container_mode, array( 'boxed-site', 'boxed-sections' ), true ) ) {
+			$classes[] = 'ef-container-mode-' . sanitize_html_class( $container_mode );
+		}
 		return $classes;
 	}
 );
+
+// Open site wrapper for boxed-site mode.
+if ( 'boxed-site' === $container_mode ) {
+	echo '<div class="ef-site-wrap">';
+}
 
 get_template_part( 'template-parts/header/header', $layout );
 ?>

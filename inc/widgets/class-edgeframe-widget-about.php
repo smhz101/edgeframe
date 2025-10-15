@@ -21,9 +21,37 @@ class EdgeFrame_Widget_About extends WP_Widget {
 		$text  = isset( $instance['text'] ) ? $instance['text'] : '';
 		$img   = isset( $instance['image'] ) ? absint( $instance['image'] ) : 0;
 
-		echo $args['before_widget'];
+		echo wp_kses(
+			$args['before_widget'],
+			array(
+				'section' => array(
+					'id'    => true,
+					'class' => true,
+				),
+				'div'     => array(
+					'id'    => true,
+					'class' => true,
+				),
+			)
+		);
 		if ( $title ) {
-			echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
+			echo wp_kses(
+				$args['before_title'],
+				array(
+					'h1' => array( 'class' => true ),
+					'h2' => array( 'class' => true ),
+					'h3' => array( 'class' => true ),
+					'h4' => array( 'class' => true ),
+				)
+			) . esc_html( $title ) . wp_kses(
+				$args['after_title'],
+				array(
+					'h1' => array(),
+					'h2' => array(),
+					'h3' => array(),
+					'h4' => array(),
+				)
+			);
 		}
 
 		if ( $img ) {
@@ -35,7 +63,13 @@ class EdgeFrame_Widget_About extends WP_Widget {
 		if ( $text ) {
 			echo '<div class="ef-about-text">' . wp_kses_post( wpautop( $text ) ) . '</div>';
 		}
-		echo $args['after_widget'];
+		echo wp_kses(
+			$args['after_widget'],
+			array(
+				'section' => array(),
+				'div'     => array(),
+			)
+		);
 	}
 
 	public function form( $instance ) {

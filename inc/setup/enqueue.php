@@ -16,8 +16,11 @@ function edgeframe_enqueue_front() {
 	wp_enqueue_style( 'edgeframe-main', EDGEFRAME_URI . 'assets/css/main.css', array(), EDGEFRAME_VERSION );
 
 	// Prefer Customizer theme mod for WP.org compliance; fallback to settings option.
-	$accent = edgeframe_get_option( 'edgeframe_accent', edgeframe_opt( 'accent', '#4f46e5' ) );
-	wp_add_inline_style( 'edgeframe-main', ':root{--ef-accent:' . esc_attr( $accent ) . ';}' );
+	$accent   = edgeframe_get_option( 'edgeframe_accent', edgeframe_opt( 'accent', '#4f46e5' ) );
+	$cwidth   = function_exists( 'edgeframe_opt' ) ? (int) edgeframe_opt( 'container_width', 1200 ) : 1200;
+	$cpad     = function_exists( 'edgeframe_opt' ) ? (int) edgeframe_opt( 'container_padding', 24 ) : 24;
+	$css_vars = ':root{--ef-accent:' . esc_attr( $accent ) . ';--ef-container-width:' . esc_attr( (string) $cwidth ) . 'px;--ef-container-padding:' . esc_attr( (string) $cpad ) . 'px;}';
+	wp_add_inline_style( 'edgeframe-main', $css_vars );
 
 	wp_enqueue_script( 'edgeframe-main', EDGEFRAME_URI . 'assets/js/main.js', array(), EDGEFRAME_VERSION, true );
 

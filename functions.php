@@ -26,12 +26,17 @@ require EDGEFRAME_PATH . 'inc/features/image-sizes.php';
 require EDGEFRAME_PATH . 'inc/features/template-tags.php';
 require EDGEFRAME_PATH . 'inc/features/pagination.php';
 require EDGEFRAME_PATH . 'inc/features/breadcrumbs.php';
-require EDGEFRAME_PATH . 'inc/features/shortcodes.php';
+// Shortcodes are plugin territory; ship behind a filter for non-directory builds.
 require EDGEFRAME_PATH . 'inc/features/security.php';
 require EDGEFRAME_PATH . 'inc/features/performance.php';
 require EDGEFRAME_PATH . 'inc/features/block-styles.php';
 require EDGEFRAME_PATH . 'inc/features/block-patterns.php';
-require EDGEFRAME_PATH . 'inc/blocks/index.php';
+// Server-rendered blocks can be moved to a plugin; allow disabling via filter.
+// Note: Shortcodes and block registration belong in a plugin per Theme Directory guidelines.
+// require EDGEFRAME_PATH . 'inc/features/shortcodes.php';
+// add_filter( 'edgeframe_enable_theme_shortcodes', '__return_false' );
+// require EDGEFRAME_PATH . 'inc/blocks/index.php';
+// add_filter( 'edgeframe_enable_theme_blocks', '__return_true' );
 
 /** Widgets */
 require EDGEFRAME_PATH . 'inc/widgets/class-edgeframe-widget-about.php';

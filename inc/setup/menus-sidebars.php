@@ -39,15 +39,5 @@ function edgeframe_register_sidebars() {
 	);
 }
 
-/**
- * Register theme widgets.
- */
-function edgeframe_register_widgets() {
-	if ( class_exists( 'EdgeFrame_Widget_About' ) ) {
-		register_widget( 'EdgeFrame_Widget_About' );
-	}
-	if ( class_exists( 'EdgeFrame_Widget_Recent_Posts' ) ) {
-		register_widget( 'EdgeFrame_Widget_Recent_Posts' );
-	}
-}
-add_action( 'widgets_init', 'edgeframe_register_widgets' );
+// Note: Custom widgets are considered plugin territory by Theme Review guidelines.
+// If needed, register them via a separate plugin.

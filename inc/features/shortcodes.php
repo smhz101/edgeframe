@@ -13,19 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Use filter 'edgeframe_enable_theme_shortcodes' to disable in environments where shortcodes are plugin territory.
  */
-add_action( 'init', 'edgeframe_register_shortcodes' );
-function edgeframe_register_shortcodes() {
-	$enabled = apply_filters( 'edgeframe_enable_theme_shortcodes', true );
-	if ( ! $enabled ) {
-		return;
-	}
-
-	add_shortcode( 'year', 'edgeframe_sc_year' );
-	add_shortcode( 'site_title', 'edgeframe_sc_site_title' );
-	add_shortcode( 'site_tagline', 'edgeframe_sc_site_tagline' );
-	add_shortcode( 'button', 'edgeframe_sc_button' );
-	add_shortcode( 'breadcrumbs', 'edgeframe_sc_breadcrumbs' );
-}
+// Disabled in theme build. Move shortcodes to a plugin.
+// add_action( 'init', function() {
+// add_shortcode( 'year', 'edgeframe_sc_year' );
+// add_shortcode( 'site_title', 'edgeframe_sc_site_title' );
+// add_shortcode( 'site_tagline', 'edgeframe_sc_site_tagline' );
+// add_shortcode( 'button', 'edgeframe_sc_button' );
+// add_shortcode( 'breadcrumbs', 'edgeframe_sc_breadcrumbs' );
+// } );
 
 /**
  * [year] — current year
