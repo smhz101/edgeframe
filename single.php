@@ -13,5 +13,8 @@
 	endwhile; // End of the loop.
 	?>
 </main>
-<?php if ( 'full-width' !== $layout && 'sidebar-content' !== $layout ) { get_sidebar(); } ?>
+<?php
+if ( 'full-width' !== $layout && 'sidebar-content' !== $layout ) {
+	get_sidebar(); }
+?>
 <?php get_footer(); ?>

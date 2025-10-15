@@ -8,8 +8,8 @@
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
- 
-$layout = function_exists( 'edgeframe_opt' ) ? edgeframe_opt( 'layout', 'content-sidebar' ) : 'content-sidebar';
+
+$layout  = function_exists( 'edgeframe_opt' ) ? edgeframe_opt( 'layout', 'content-sidebar' ) : 'content-sidebar';
 $classes = 'widget-area';
 if ( 'sidebar-content' === $layout ) {
 	$classes .= ' sidebar-left';

@@ -24,7 +24,7 @@ function edgeframe_get_settings_schema(): array {
 				'layout'   => array(
 					'label'  => __( 'Layout', 'edgeframe' ),
 					'fields' => array(
-						'header_layout'      => array(
+						'header_layout'         => array(
 							'type'    => 'select',
 							'label'   => __( 'Header Layout', 'edgeframe' ),
 							'attrs'   => array( 'class' => 'ef-select2' ),
@@ -39,12 +39,12 @@ function edgeframe_get_settings_schema(): array {
 							),
 							'default' => 'simple',
 						),
-						'header_sticky'      => array(
+						'header_sticky'         => array(
 							'type'    => 'toggle',
 							'label'   => __( 'Sticky Header', 'edgeframe' ),
 							'default' => 0,
 						),
-						'header_transparent' => array(
+						'header_transparent'    => array(
 							'type'    => 'toggle',
 							'label'   => __( 'Transparent (overlay)', 'edgeframe' ),
 							'default' => 0,
@@ -79,15 +79,18 @@ function edgeframe_get_settings_schema(): array {
 							'type'    => 'group',
 							'label'   => __( 'CTA Button', 'edgeframe' ),
 							'show_if' => array(
-								array( 'field' => 'header_show_cta', 'truthy' => true ),
+								array(
+									'field'  => 'header_show_cta',
+									'truthy' => true,
+								),
 							),
 							'fields'  => array(
-								'text'   => array(
+								'text'    => array(
 									'type'    => 'text',
 									'label'   => __( 'Text', 'edgeframe' ),
 									'default' => __( 'Contact Us', 'edgeframe' ),
 								),
-								'url'    => array(
+								'url'     => array(
 									'type'    => 'text',
 									'label'   => __( 'URL', 'edgeframe' ),
 									'default' => '',
@@ -114,7 +117,10 @@ function edgeframe_get_settings_schema(): array {
 							'label'   => __( 'Top Bar Text', 'edgeframe' ),
 							'tooltip' => __( 'Short text for the top bar (accepts basic HTML).', 'edgeframe' ),
 							'show_if' => array(
-								array( 'field' => 'header_topbar_enable', 'truthy' => true ),
+								array(
+									'field'  => 'header_topbar_enable',
+									'truthy' => true,
+								),
 							),
 							'default' => '',
 						),

@@ -18,5 +18,8 @@
 		<?php get_template_part( 'template-parts/content/content', 'none' ); ?>
 	<?php endif; ?>
 </main>
-<?php if ( 'full-width' !== $layout && 'sidebar-content' !== $layout ) { get_sidebar(); } ?>
+<?php
+if ( 'full-width' !== $layout && 'sidebar-content' !== $layout ) {
+	get_sidebar(); }
+?>
 <?php get_footer(); ?>

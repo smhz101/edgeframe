@@ -93,17 +93,23 @@ function edgeframe_setup_theme_support() {
 	);
 
 	// Custom Header (recommended when using header images)
-	add_theme_support( 'custom-header', array(
-		'width'              => 1920,
-		'height'             => 480,
-		'flex-width'         => true,
-		'flex-height'        => true,
-		'header-text'        => false,
-		'video'              => false,
-	) );
+	add_theme_support(
+		'custom-header',
+		array(
+			'width'       => 1920,
+			'height'      => 480,
+			'flex-width'  => true,
+			'flex-height' => true,
+			'header-text' => false,
+			'video'       => false,
+		)
+	);
 
 	// Custom Background (recommended when using background images/colors)
-	add_theme_support( 'custom-background', array(
-		'default-color' => 'ffffff',
-	) );
+	add_theme_support(
+		'custom-background',
+		array(
+			'default-color' => 'ffffff',
+		)
+	);
 }
